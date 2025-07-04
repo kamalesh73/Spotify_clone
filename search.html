@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="../public/style.css">
+    
+</head>
+<body style="background-color: rgb(28, 25, 25);">
+      <div class="navbar" id="navbar">
+            <div class="temp1">
+             <button title="Button" class="back" onclick="window.location.href='./index.html';"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg> </button> 
+             <div><form action="/" class="form" method="GET"><input type="text" name="input" class="searchbar"  placeholder="  What do you want to listen to ?"> </form>        </div> 
+            </div>
+            <div class="temp2">
+                 <button title="Button" class="users"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></button>
+             <button title="Button" onclick="window.location.href='./authentication.html';" class="login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></buttob>
+            </div>
+            
+        </div>
+        <div class="result">
+            <div class="buttons">
+                 <button class="btn" id="0"  onclick="reverse(id)" >All</button>
+                  <button class="btn" id="1" onclick="reverse(id)">Songs</button>
+                 <button class="btn" id="2" onclick="reverse(id)">Albums</button>
+                 <button class="btn" id="3" onclick="reverse(id)" >Artist</button>
+            </div>
+
+                  <div class="main-result-row">
+
+  <!-- Top Result -->
+  <section class="top-result">
+    <h2>Top Result</h2>
+    <div class="album-card">
+      <img src="https://i.pinimg.com/736x/78/b7/45/78b745f86b99444fbaeffb3291eff409.jpg" alt="Album Cover">
+      <div>
+        <h3>Agnyaathavaasi</h3>
+        <p>By Anirudh Ravichander</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Songs Section -->
+  <section class="songs-section">
+    <h2>Songs</h2>
+    <div class="song-list">
+      <div class="song">
+        <img src="https://i.pinimg.com/736x/78/b7/45/78b745f86b99444fbaeffb3291eff409.jpg" alt="Song Cover">
+        <div class="song-meta">
+          <span>Aga Bai</span>
+          <small>Shalmali, Monali, Amit Trivedi</small>
+        </div>
+        <span class="duration">4:24</span>
+      </div>
+
+
+      <!-- Add more songs as needed -->
+    </div>
+     </section>
+
+   </div>
+          
+   <section class="artists-section">
+    <h2>Artists</h2>
+    <div class="artist-grid">
+      <% artists.forEach(artist => { %>
+        <div class="artist-card">
+          <img src="<%= artist.image %>" alt="<%= artist.name %>">
+          <p><%= artist.name %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+         </div>      
+
+            
+        <script src="./index.js"></script>
+</body>
+</html>
