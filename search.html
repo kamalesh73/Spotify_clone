@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
-    <link rel="stylesheet" href="../public/style.css">
+        <link rel="stylesheet" href="/style.css">
     
 </head>
 <body style="background-color: rgb(28, 25, 25);">
       <div class="navbar" id="navbar">
             <div class="temp1">
-             <button title="Button" class="back" onclick="window.location.href='./index.html';"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg> </button> 
-             <div><form action="/" class="form" method="GET"><input type="text" name="input" class="searchbar"  placeholder="  What do you want to listen to ?"> </form>        </div> 
+             <button title="Button" class="back"  onclick="window.location.href='/'"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg> </button> 
+             <div><form action="/search" class="form" method="POST">
+  <input type="text" name="input" class="searchbar" placeholder="What do you want to listen to?">
+</form>
+  </div> 
             </div>
             <div class="temp2">
                  <button title="Button" class="users"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></button>
@@ -32,46 +35,54 @@
   <!-- Top Result -->
   <section class="top-result">
     <h2>Top Result</h2>
-    <div class="album-card">
-      <img src="https://i.pinimg.com/736x/78/b7/45/78b745f86b99444fbaeffb3291eff409.jpg" alt="Album Cover">
+   <% if(locals.topResult){  %>  
+          <div class="album-card">
+      <img src="<%= topResult.image || topResult.album?.images[0]?.url %>" alt="Album Cover">
       <div>
-        <h3>Agnyaathavaasi</h3>
-        <p>By Anirudh Ravichander</p>
+        <h3><%= topResult.name %></h3>
+        <p><%= topResult.artists %></p>
       </div>
     </div>
   </section>
+     <% }else{ %>
+          <h3></h3>
+   <% }  %>
+    
 
-  <!-- Songs Section -->
-  <section class="songs-section">
-    <h2>Songs</h2>
-    <div class="song-list">
-      <div class="song">
-        <img src="https://i.pinimg.com/736x/78/b7/45/78b745f86b99444fbaeffb3291eff409.jpg" alt="Song Cover">
+
+
+
+
+     <!-- Songs Section -->
+       <section class="songs-section">
+      <h2>Songs</h2>
+      <div class="song-list">
+       <% songs.forEach(song=>{ %> 
+           <div class="song">
+        <img src=" <%= song.image %>" alt="Song Cover">
         <div class="song-meta">
-          <span>Aga Bai</span>
-          <small>Shalmali, Monali, Amit Trivedi</small>
+          <span><%= song.name %></span>
+          <small><%= song.artists %></small>
         </div>
-        <span class="duration">4:24</span>
+        <span class="duration"><%= song.duration_ms %></span>
       </div>
-
-
+      <%})  %>
+      
       <!-- Add more songs as needed -->
-    </div>
+     </div>
      </section>
-
-   </div>
+  </div>
           
-   <section class="artists-section">
-    <h2>Artists</h2>
-    <div class="artist-grid">
-      <% artists.forEach(artist => { %>
-        <div class="artist-card">
-          <img src="<%= artist.image %>" alt="<%= artist.name %>">
-          <p><%= artist.name %></p>
-        </div>
-      <% }) %>
+   <div class="artist-grid">
+  <% artists.forEach(artist => { %>
+    <div class="artist-card">
+      <% if (artist.image) { %>
+        <img src="<%= artist.image %>" alt="<%= artist.name %>">
+      <% } %>
+      <p style="color: white;"><%= artist.name %></p>
     </div>
-  </section>
+  <% }) %>
+</div>
 
          </div>      
 
